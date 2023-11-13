@@ -2,7 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import QRCodeScanner from './components/QRCodeScanner'
+
 import PersonData from './components/PersonData'
 
 function App() {
@@ -22,10 +22,6 @@ function App() {
     <div className="App">
       <PersonData/>
       <h1>QR Code Scanner</h1>
-      <button onClick={openScanner}>Open Scanner</button>
-
-      {showScanner && <QRCodeScanner onClose={closeScanner} />}
-      
     </div>
   );
 }
