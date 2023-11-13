@@ -28,6 +28,17 @@ const PersonData = () => {
     setIsFirstTimeUser(false);
   };
 
+  const handleLogout = () => {
+    // Clear all user data from local storage
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userEmail');
+
+    // Reset component state
+    setName('');
+    setEmail('');
+    setIsFirstTimeUser(true);
+  };
+
   return (
     <div>
       {isFirstTimeUser ? (
@@ -48,6 +59,7 @@ const PersonData = () => {
         <div>
           <p>Welcome back, {name}!</p>
           <p>Email: {email}</p>
+          <button onClick={handleLogout}>Logout</button>
         </div>
       )}
     </div>

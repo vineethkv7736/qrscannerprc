@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import QRCodeScanner from './components/QRCodeScanner'
 import PersonData from './components/PersonData'
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -24,6 +25,7 @@ function App() {
       <button onClick={openScanner}>Open Scanner</button>
 
       {showScanner && <QRCodeScanner onClose={closeScanner} />}
+      
     </div>
   );
 }
