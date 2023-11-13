@@ -1,22 +1,15 @@
-// src/components/QRCodeScanner.js
+// QrCodeScanner.jsx
 import React, { useState } from 'react';
-import QrScanner from 'react-qr-scanner';
+import {QrReader} from 'react-qr-reader';
 
 const QRCodeScanner = ({ onClose }) => {
-  const [scannedCodes, setScannedCodes] = useState([]);
   const [result, setResult] = useState('');
 
   const handleScan = (data) => {
     if (data) {
       setResult(data);
-
-      // Check if the QR code is already scanned
-      if (!scannedCodes.includes(data)) {
-        // Save data to local storage
-        localStorage.setItem('qrCodeData', JSON.stringify([...scannedCodes, data]));
-        // Update the state with the new scanned code
-        setScannedCodes([...scannedCodes, data]);
-      }
+      // Optionally, you can add logic to handle the scanned data
+      console.log('Scanned Result:', data);
     }
   };
 
@@ -27,13 +20,13 @@ const QRCodeScanner = ({ onClose }) => {
   return (
     <div>
       <button onClick={onClose}>Close Scanner</button>
-      <QrScanner
-        onScan={handleScan}
+      <QrReader
+        delay={300}
         onError={handleError}
+        onScan={handleScan}
         style={{ width: '100%' }}
       />
       <p>Scanned Result: {result}</p>
-      <p>Scanned Codes: {scannedCodes.join(', ')}</p>
     </div>
   );
 };
