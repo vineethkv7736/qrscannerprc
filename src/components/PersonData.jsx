@@ -1,13 +1,12 @@
-// UserInfoForm.jsx
 import React, { useState, useEffect } from 'react';
-
+import QRCodeScanner from './QRCodeScanner'
 const PersonData = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(true);
 
   useEffect(() => {
-    // Check if user data exists in local storage
+    
     const storedName = localStorage.getItem('userName');
     const storedEmail = localStorage.getItem('userEmail');
 
@@ -16,12 +15,12 @@ const PersonData = () => {
       setEmail(storedEmail);
       setIsFirstTimeUser(false);
     }
-  }, []); // Run this effect only once on component mount
+  }, []); 
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    // Save user data to local storage
+    
     localStorage.setItem('userName', name);
     localStorage.setItem('userEmail', email);
 
@@ -29,14 +28,21 @@ const PersonData = () => {
   };
 
   const handleLogout = () => {
-    // Clear all user data from local storage
-    localStorage.removeItem('userName');
-    localStorage.removeItem('userEmail');
-
-    // Reset component state
-    setName('');
-    setEmail('');
-    setIsFirstTimeUser(true);
+    const auth = window.prompt('Enter the authenthication number from coordinator');
+    if( auth==12345678)
+    {
+      localStorage.removeItem('userName');
+      localStorage.removeItem('userEmail');
+      localStorage.removeItem('scanCount');
+      // Reset component state
+      setName('');
+      setEmail('');
+      setIsFirstTimeUser(true);
+    }
+    else 
+    {
+      window.alert("Try again");
+    }
   };
 
   return (
@@ -59,6 +65,8 @@ const PersonData = () => {
         <div>
           <p>Welcome back, {name}!</p>
           <p>Email: {email}</p>
+          <h1>QR Code Scanner</h1>
+          <QRCodeScanner/>
           <button onClick={handleLogout}>Logout</button>
         </div>
       )}
