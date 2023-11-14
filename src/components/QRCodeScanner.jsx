@@ -25,6 +25,7 @@ const QRCodeScanner = ({ onScan }) => {
       {
         setScanCount((prevCount) => prevCount + 1);
         localStorage.setItem('scanCount', scanCount + 1);
+        qrCodeScanner.clear();
         window.alert(`Scanning Successful`);
       }
       else
