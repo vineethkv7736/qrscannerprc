@@ -36,8 +36,7 @@ const QRCodeScanner = ({ onScan }) => {
     }
 
     function error(error) {
-      window.alert('Error during QR code scan. Please Reverify the QR.');
-      window.location.reload();
+     console.log("error");
     }
 
    
