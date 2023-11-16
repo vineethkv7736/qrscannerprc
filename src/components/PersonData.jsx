@@ -44,7 +44,7 @@ const PersonData = () => {
 
   const handleLogout = async() => {
     const auth = window.prompt('Type your phone number to confirm logout');
-    if(auth==phone)
+    if(auth==12345678)
     { const up= doc(db, "users",email);
       await updateDoc(up,{
       count:scanCount
