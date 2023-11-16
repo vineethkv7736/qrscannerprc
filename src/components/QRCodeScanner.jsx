@@ -3,7 +3,7 @@ import { Html5QrcodeScanner } from 'html5-qrcode';
 
 const QRCodeScanner = ({ onScan, updateScanCount }) => {
   const [scanCount, setScanCount] = useState(0);
-
+  const [test, testCount] = useState(0);
   useEffect(() => {
     const storedScanCount = localStorage.getItem('scanCount');
     if (storedScanCount) {
@@ -25,6 +25,7 @@ const QRCodeScanner = ({ onScan, updateScanCount }) => {
        {
         const scannedCodes = JSON.parse(localStorage.getItem('scannedCodes')) || [];
         if (scannedCodes.includes(result)) { qrCodeScanner.clear();
+          testCount((prevCount) => prevCount + 1);
           window.alert(`This QR code has already been scanned.`);
          
         } 
@@ -32,12 +33,13 @@ const QRCodeScanner = ({ onScan, updateScanCount }) => {
           localStorage.setItem('scannedCodes', JSON.stringify([...scannedCodes, result]));
           setScanCount((prevCount) => prevCount + 1);
           localStorage.setItem('scanCount', scanCount + 1);
-         
+          testCount((prevCount) => prevCount + 1);
           window.alert(`Scanning Successful`);
         }
       }
        else {
         qrCodeScanner.clear();
+        testCount((prevCount) => prevCount + 1);
         window.alert(`This QR is not authorized our system`);
       }
       
@@ -48,7 +50,7 @@ const QRCodeScanner = ({ onScan, updateScanCount }) => {
     }
 
     updateScanCount(scanCount);
-  },[scanCount]);
+  },[test]);
 
   return (
     <div>
