@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
+
 const QRCodeScanner = ({ onScan, updateScanCount }) => {
   const [scanCount, setScanCount] = useState(0);
   const [test, testCount] = useState(0);
   useEffect(() => {
     const storedScanCount = localStorage.getItem('scanCount');
+    console.log(">>",storedScanCount);
     if (storedScanCount) {
-      setScanCount(parseInt(storedScanCount, 10));
+      updateScanCount(parseInt(storedScanCount, 10));
     }
 
     const qrCodeScanner = new Html5QrcodeScanner('reader', {
@@ -30,26 +32,34 @@ const QRCodeScanner = ({ onScan, updateScanCount }) => {
         } 
         else {  qrCodeScanner.clear();
           localStorage.setItem('scannedCodes', JSON.stringify([...scannedCodes, result]));
-          setScanCount((prevCount) => prevCount + 1);
-          localStorage.setItem('scanCount', scanCount);
+          setScanCount(scanCount+1);
+          console.log("Scancount:",scanCount);
           testCount((prevCount) => prevCount + 1);
-          window.alert(`Scanning Successful`);
         }
       }
-       else {
+      else {
         qrCodeScanner.clear();
         testCount((prevCount) => prevCount + 1);
         window.alert(`This QR is not authorized our system`);
       }
       
     }
-
+    
     function error(error) {
-     
+      
     }
-
-    updateScanCount(scanCount);
+    
+    // updateScanCount(scanCount);
   },[test]);
+  useEffect(()=>{
+    if(test>0){
+      localStorage.setItem("scanCount", scanCount);
+      const storedScan = localStorage.getItem('scanCount');
+      console.log("<><><>",storedScan,scanCount);
+      updateScanCount(scanCount);
+    }
+    
+  },[scanCount])
 
   return (
     <div>
