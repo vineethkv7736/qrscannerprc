@@ -40,7 +40,7 @@ const PersonData = () => {
       localStorage.removeItem('userName');
       localStorage.removeItem('userEmail');
       localStorage.removeItem('scanCount');
-      
+      localStorage.removeItem('scannedCodes');
       setName('');
       setEmail('');
       setIsFirstTimeUser(true);

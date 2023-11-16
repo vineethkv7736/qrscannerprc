@@ -12,7 +12,7 @@ const QRCodeScanner = ({ onScan, updateScanCount }) => {
 
     const qrCodeScanner = new Html5QrcodeScanner('reader', {
       fps: 500,
-      qrbox:100,
+      qrbox:150,
     });
 
     qrCodeScanner.render(success, error);
@@ -40,7 +40,7 @@ const QRCodeScanner = ({ onScan, updateScanCount }) => {
         window.alert(`This QR is not authorized our system`);
         qrCodeScanner.clear();
       }
-    
+      window.location.reload();
     }
 
     function error(error) {
