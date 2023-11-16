@@ -40,7 +40,7 @@ const QRCodeScanner = ({ onScan, updateScanCount }) => {
         window.alert(`This QR is not authorized our system`);
         qrCodeScanner.clear();
       }
-      window.location.reload();
+      
     }
 
     function error(error) {
