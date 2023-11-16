@@ -2,12 +2,15 @@
     0%, 50%, 100% {
       opacity: 1;
     }
-    25% {
+    25%,75% {
       opacity: 0;
     }
   }
   
   .blink {
-    animation: blink 5s infinite;
+    animation: blink 4s infinite;
   }
-  
+.custom
+{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

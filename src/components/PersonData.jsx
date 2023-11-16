@@ -74,7 +74,7 @@ const PersonData = () => {
       ) : (
         <div className='w-screen h-screen bg-gray-200'>
           <div className=' flex justify-start'>
-        <p className='font-serif text-2xl mb-1 mt-2 ml-3'>Welcome back, {name}!</p>
+        <p className='font-serif text-2xl mb-1 mt-2 ml-5'>Welcome  {name}</p>
         </div>
         <div className=' flex justify-end'>
         <button onClick={handleLogout} className='p-2 bg-red-900 text-white rounded-lg mt-1 mr-2'>Logout</button>
@@ -82,7 +82,7 @@ const PersonData = () => {
         <div className=' flex justify-center'>
         <p  className='font-serif text-1xl mb-0 blink'>Total No of Scan: {scanCount}</p>
         </div>
-        <hr className='pt-0.5 bg-red-900 mt-3' />
+        <hr className='pt-0.5 bg-red-900 mt-3 ml-3 mr-3' />
         <h1 className='flex justify-center font-serif text-2xl mt-4 mb-4'>Scan QR</h1>
         <QRCodeScanner updateScanCount={updateScanCount} />
       </div>
