@@ -21,7 +21,7 @@ const PersonData = () => {
     if (storedName && storedEmail) {
       setName(storedName);
       setEmail(storedEmail);
-      updateScanCount(storedScanCount);
+      setScanCount(parseInt(storedScanCount, 10));
       setIsFirstTimeUser(false);
     }
   }, []); 
