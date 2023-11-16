@@ -17,11 +17,11 @@ const PersonData = () => {
     
     const storedName = localStorage.getItem('userName');
     const storedEmail = localStorage.getItem('userEmail');
-    const storedScanCount = localStorage.getItem('scanCount');
+    //const storedScanCount = localStorage.getItem('scanCount');
     if (storedName && storedEmail) {
       setName(storedName);
       setEmail(storedEmail);
-      setScanCount(parseInt(storedScanCount, 10));
+     // setScanCount(parseInt(storedScanCount, 10));
       setIsFirstTimeUser(false);
     }
   }, []); 
@@ -44,8 +44,9 @@ const PersonData = () => {
   };
 
   const handleLogout = async() => {
-    const auth = window.prompt('Type your phone number to confirm logout');
-    if(auth==phone)
+    let auth = window.prompt('Type "PROTEK" to confirm logout');
+    auth=auth.toUpperCase();
+    if(auth=="PROTEK")
     { const up= doc(db, "users",email);
       await updateDoc(up,{
       count:scanCount

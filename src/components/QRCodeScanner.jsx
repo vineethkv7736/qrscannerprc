@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
-
 const QRCodeScanner = ({ onScan, updateScanCount }) => {
   const [scanCount, setScanCount] = useState(0);
   const [test, testCount] = useState(0);
@@ -32,7 +31,7 @@ const QRCodeScanner = ({ onScan, updateScanCount }) => {
         else {  qrCodeScanner.clear();
           localStorage.setItem('scannedCodes', JSON.stringify([...scannedCodes, result]));
           setScanCount((prevCount) => prevCount + 1);
-          localStorage.setItem('scanCount', scanCount + 1);
+          localStorage.setItem('scanCount', scanCount);
           testCount((prevCount) => prevCount + 1);
           window.alert(`Scanning Successful`);
         }
