@@ -28,27 +28,27 @@ const QRCodeScanner = ({ onScan, updateScanCount }) => {
           window.alert(`This QR code has already been scanned.`);
          
         } 
-        else {
+        else {  qrCodeScanner.clear();
           localStorage.setItem('scannedCodes', JSON.stringify([...scannedCodes, result]));
           setScanCount((prevCount) => prevCount + 1);
           localStorage.setItem('scanCount', scanCount + 1);
-          qrCodeScanner.clear();
+         
           window.alert(`Scanning Successful`);
         }
       }
        else {
-        window.alert(`This QR is not authorized our system`);
         qrCodeScanner.clear();
+        window.alert(`This QR is not authorized our system`);
       }
       
     }
 
     function error(error) {
-      console.log("error");
+     
     }
 
     updateScanCount(scanCount);
-  }, [onScan, scanCount, updateScanCount]);
+  },[scanCount]);
 
   return (
     <div>
