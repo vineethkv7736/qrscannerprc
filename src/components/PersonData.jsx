@@ -17,7 +17,8 @@ const PersonData = () => {
     
     const storedName = localStorage.getItem('userName');
     const storedEmail = localStorage.getItem('userEmail');
-    //const storedScanCount = localStorage.getItem('scanCount');
+    const storedScanCount = localStorage.getItem('scanCount');
+    console.log(storedScanCount);
     if (storedName && storedEmail) {
       setName(storedName);
       setEmail(storedEmail);
@@ -55,6 +56,7 @@ const PersonData = () => {
       localStorage.removeItem('userEmail');
       localStorage.removeItem('scanCount');
       localStorage.removeItem('scannedCodes');
+      localStorage.removeItem('scanCount');
       setName('');
       setEmail('');
       setIsFirstTimeUser(true);
