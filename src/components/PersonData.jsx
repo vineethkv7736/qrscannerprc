@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import QRCodeScanner from './QRCodeScanner';
-import per from "./per.css";
+import "./per.css";
 import {db} from "../firebase/config.js";
 import { doc, setDoc, updateDoc } from "firebase/firestore";
 const PersonData = () => {
@@ -17,7 +17,7 @@ const PersonData = () => {
     
     const storedName = localStorage.getItem('userName');
     const storedEmail = localStorage.getItem('userEmail');
-
+    const storedScanCount = localStorage.getItem('scanCount');
     if (storedName && storedEmail) {
       setName(storedName);
       setEmail(storedEmail);
