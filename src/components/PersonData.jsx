@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import QRCodeScanner from './QRCodeScanner';
 import per from "./per.css";
+import {db} from "../firebase/config.js";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 const PersonData = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -23,27 +25,42 @@ const PersonData = () => {
     }
   }, []); 
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async(e) => {
     e.preventDefault();
-
-    
+    await setDoc(doc(db, "users",email), {
+      Name: name,
+      Email:email,
+      Phno: phone
+    }).then(()=>{
+      setIsFirstTimeUser(false)
+    }).catch((er)=>{
+      alert("Try again")
+      console.error(er);
+  })
     localStorage.setItem('userName', name);
     localStorage.setItem('userEmail', email);
 
-    setIsFirstTimeUser(false);
   };
 
-  const handleLogout = () => {
-    const auth = window.prompt('Enter the authenthication number from coordinator');
-    if( auth==12345678)
-    {
-      localStorage.removeItem('userName');
+  const handleLogout = async() => {
+    const auth = window.prompt('Type your phone number to confirm logout');
+    if(auth==phone)
+    { const up= doc(db, "users",email);
+      await updateDoc(up,{
+      count:scanCount
+      }).then(()=>{
+        localStorage.removeItem('userName');
       localStorage.removeItem('userEmail');
       localStorage.removeItem('scanCount');
       localStorage.removeItem('scannedCodes');
       setName('');
       setEmail('');
       setIsFirstTimeUser(true);
+      }).catch((er)=>{
+        alert("Firebase error Try again")
+        console.error(er);
+    })
+      
     }
     else 
     {
