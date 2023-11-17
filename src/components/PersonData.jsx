@@ -59,6 +59,7 @@ const PersonData = () => {
       localStorage.removeItem('scanCount');
       setName('');
       setEmail('');
+      updateScanCount(0);
       setIsFirstTimeUser(true);
       }).catch((er)=>{
         alert("Firebase error Try again")

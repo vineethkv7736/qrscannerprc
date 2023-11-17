@@ -31,10 +31,10 @@ const QRCodeScanner = ({ onScan, updateScanCount }) => {
          
         } 
         else {  qrCodeScanner.clear();
+          testCount((prevCount) => prevCount + 1);
           localStorage.setItem('scannedCodes', JSON.stringify([...scannedCodes, result]));
           setScanCount(scanCount+1);
           console.log("Scancount:",scanCount);
-          testCount((prevCount) => prevCount + 1);
         }
       }
       else {
@@ -51,6 +51,7 @@ const QRCodeScanner = ({ onScan, updateScanCount }) => {
     
     // updateScanCount(scanCount);
   },[test]);
+
   useEffect(()=>{
     if(test>0){
       localStorage.setItem("scanCount", scanCount);
